@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>尋找球場</title>
+    <link rel="stylesheet" href="./nav.css">
+
+    <style>
+
+         html, body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+
+           #picturearea {
+            display: grid;
+            grid-template-columns: repeat(4, 200px);
+            /* 建立四格，每格200px */
+            justify-content: center;
+            /* ✅ 整體置中 */
+            column-gap: 92px;
+            row-gap: 47px;
+            max-width: 1076px;
+            
+        }
+        @media screen and (max-width:768px) {#picturearea{display:grid;grid-template-columns:1fr;}#area{width: 100vw;padding: 0;box-sizing: border-box;}}
+
+
+        body {
+            background-color: #FBF6EF;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            /*  「彈性容器的主軸方向設為縱向（上下排列）」，要記得加上display:flex;*/
+            align-items: center;
+            font-family: 'Noto Sans TC', sans-serif;
+
+        }
+
+        #textcontent {
+            font-size: clamp(15px, 3vw, 24px);
+            font-weight: 400;
+            line-height: clamp(30px, 6vw, 40px);
+            letter-spacing: 2.4px;
+            max-width: 1066px;
+            text-indent: 50px;
+        }
+
+        .title {
+            color: #8F4E11;
+            font-size: clamp(28px, 3vw, 35px);
+            font-weight: 700;
+            letter-spacing: 14px;
+            margin-bottom: 7px;
+            text-align: center;
+        }
+
+
+        .courtimg {
+            width: 200px;
+            height: 150px;
+            border-radius: 20px;
+        }
+
+        .picturetext {
+            color: #212529;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin-top: 20px;
+            text-align: center;
+            max-width: 1190px;
+
+        }
+
+        .pictureitem {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        #area{background-color: white;text-align: center;padding: 19px 40px 40px 40px;margin-top: 87px;}
+        a{text-decoration: none;color: inherit;}
+
+
+            #footer {
+            background-color: rgba(3, 36, 12, 0.80);
+            color: #E5D9D9;
+            text-align: center;
+            font-size: clamp(30px,5vw,50px);
+            font-weight: 700;
+            margin-top: clamp(80px, 5vw, 100px);
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #footer img {
+               width: clamp(30px,3vw,50px);
+            height: clamp(30px,3vw,50px);
+            transform: rotate(20deg);
+            aspect-ratio: 1/1;
+            margin-left: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div id="nav-placeholder"></div>
+
+<script>
+  fetch('./nav.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("nav-placeholder").innerHTML = html;
+
+      // 加載完成後再加上 menu toggle 功能
+      const toggle = document.getElementById("menu-toggle");
+      const links = document.getElementById("nav-links");
+
+      if (toggle && links) {
+        toggle.addEventListener("click", () => {
+          links.classList.toggle("show");
+        });
+      }
+    });
+</script>
+
+
+
+
+
+    <!-- 文字區 -->
+
+    <div style="margin-top: -100px;">
+        <div class="title" > 球場介紹</div>
+        <!-- 內文 -->
+        <div id="textcontent">
+            尋找一個適合自己的羽毛球場，是提升球技與享受運動樂趣的重要關鍵。良好的場地不僅提供適當的燈光、平整的地面與完善的設施。不同球場的地板材質、空間高度與冷氣強度等條件都會影響運動意願。此外，球場的管理制度與人員素質也影響著整體體驗，例如場地清潔度、是否有提供更衣淋浴空間等，都值得列入考量。一個合適的羽球場，也可能讓你結識志同道合的球友，增加互動與學習機會，讓運動變得更加有趣而持久。
+        </div>
+    </div>
+    <div id="area">
+        <div class="title" style="margin-bottom: 53px;">彰化地區</div>
+        <!-- 圖片區 -->
+        <div id="picturearea">
+            <!-- 峰奇 -->
+            <a href="./4-1峰奇.html">
+                <div class="pictureitem">
+                    <img src="./court/峰奇/峰奇.webp" class="courtimg">
+                    <div class="picturetext">彰化市-峰奇羽球館</div>
+                </div>
+            </a>
+            <!-- 翔戰 -->
+            <a href="./4-2翔戰.html">
+                <div class="pictureitem">
+                    <img src="./court/翔戰/翔戰.webp" class="courtimg">
+                    <div class="picturetext">彰化市-翔戰羽球館</div>
+                </div>
+            </a>
+            <!-- 彰北 -->
+            <a href="./4-3 彰北.html">
+                <div class="pictureitem">
+                    <img src="./court/彰北/DSC07683-再更新1920x1080.jpg" class="courtimg">
+                    <div class="picturetext">彰化市-彰北</div>
+                </div>
+            </a>
+            <!-- 鹿港阿斯貝克 -->
+            <div class="pictureitem">
+                <img src="./court/阿斯貝克/unnamed.webp" class="courtimg">
+                <div class="picturetext">鹿港-阿斯貝克</div>
+            </div>
+            <!-- 大城 -->
+            <a href="./4-5大城.html">
+                <div class="pictureitem">
+                    <img src="./court/大城/截圖 2025-06-12 上午10.43.14.png" class="courtimg">
+                    <div class="picturetext">大城-大城運動中心</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <div id="footer">
+            <div>揮拍出擊 羽你一起</div>
+            <img src="./icon/game-1.png">
+    </div>
+
+</body>
+
+</html>
