@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>球品篇</title>
+    <link rel="stylesheet" href="./CSS/60_animation/css/animate.css">
+    <link rel="stylesheet" href="./CSS/60_animation/css/loading.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+       
+        .normal {
+            width: 100%;
+            max-width: 1000px;
+            height: fit-content;
+            margin: 0 auto;
+            /* 「上下邊距為 0，左右邊距自動平均」，常用來讓區塊水平置中。 */
+            text-align: center;
+        }
+
+        body {
+            background-color: #FBF6EF;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            /*  「彈性容器的主軸方向設為縱向（上下排列）」，要記得加上display:flex;*/
+            align-items: center;
+            font-family: 'Noto Sans TC', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+
+        p {
+            text-indent: 40px;
+            width: 100%;
+            max-width: clamp(600px, 90%, 1066px);
+            margin: 0 auto;
+            font-size: clamp(15px, 3vw, 24px);
+            font-weight: 400;
+            line-height: clamp(30px, 6vw, 40px);
+            letter-spacing: 2.4px;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            text-align: left;
+
+        }
+
+        h1 {
+            width: 100%;
+            max-width: clamp(600px, 90%, 1066px);
+            color: #8F4E11;
+            font-size: clamp(28px, 3vw, 35px);
+            margin: 0 auto;
+
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .center-text {
+            text-align: center;
+        }
+
+        .down_left {
+            padding-left: 20px;
+            margin: 100px 0 0 0;
+        }
+
+        .down_right {
+            padding-left: 50px;
+            margin: 150px 0 0 0;
+        }
+
+        .title_right {
+            font-size: 35px;
+            writing-mode: vertical-lr;
+            margin: 30px 0 0 30px;
+            letter-spacing: 10px;
+        }
+
+        .title_left {
+            font-size: 30px;
+            writing-mode: vertical-lr;
+            margin-right: 10px;
+            background: rgba(200, 70, 70, 0.25);
+            color: white;
+            padding: 5px;
+            height: 100px
+        }
+
+        .imgcontent {
+            margin-right: 20px;
+        }
+
+        .padding {
+            margin-bottom: 20px;
+        }
+
+        .different:hover {
+            color: black;
+            font-size: 20px;
+        }
+
+        .graycolor {
+            color: #BFBCBC;
+        }
+
+
+        #wordup1 {
+            width: auto;
+            height: fit-content;
+            background-color: #4D4545;
+            border-radius: 10px 10px 0 0;
+            padding: 5px;
+            color: white;
+        }
+
+        #worddown1 {
+            width: auto;
+            height: fit-content;
+            background-color: #CDCBCB;
+            border-radius: 0 0 10px 10px;
+            padding: 10px;
+            font-size: 13px;
+            min-width: 80px;
+        }
+
+        #wordup2 {
+            width: auto;
+            height: fit-content;
+            background-color: #4D4545;
+            border-radius: 10px 10px 0 0;
+            padding: 5px;
+            color: white;
+        }
+
+        #worddown2 {
+            width: auto;
+            height: fit-content;
+            background-color: #CDCBCB;
+            border-radius: 0 0 10px 10px;
+            padding: 10px;
+            font-size: 13px;
+            min-width: 80px;
+        }
+
+        #wordup3 {
+            width: auto;
+            height: fit-content;
+            background-color: #4D4545;
+            border-radius: 10px 10px 0 0;
+            padding: 5px;
+            color: white;
+        }
+
+        #worddown3 {
+            width: auto;
+            height: fit-content;
+            background-color: #CDCBCB;
+            border-radius: 0 0 10px 10px;
+            padding: 10px;
+            font-size: 13px;
+            min-width: 80px;
+        }
+
+        #wordup4 {
+            width: auto;
+            height: fit-content;
+            background-color: #4D4545;
+            border-radius: 10px 10px 0 0;
+            padding: 5px;
+            color: white;
+        }
+
+        #worddown4 {
+            min-width: 80px;
+            width: auto;
+            height: fit-content;
+            background-color: #CDCBCB;
+            border-radius: 0 0 10px 10px;
+            padding: 10px;
+            font-size: 13px;
+        }
+
+        .good {
+            font-size: clamp(15px,4vw, 20px);
+            font-weight: 400;
+        }
+
+        .full-width-white {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+
+        .noticegap {
+            gap: clamp(15px, 6vw, 40px);
+            margin-top: clamp(20px, 4vw, 40px);
+        }
+
+        .left {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        #footer {
+            background-color: rgba(3, 36, 12, 0.80);
+            color: #E5D9D9;
+            text-align: center;
+            font-size: clamp(30px, 4vw, 50px);
+            font-weight: 700;
+            margin-top: clamp(80px, 5vw, 100px);
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        #footer img {
+            width: clamp(30px, 3vw, 50px);
+            height: clamp(30px, 3vw, 50px);
+            transform: rotate(20deg);
+            aspect-ratio: 1/1;
+            margin-left: 20px;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <div id="nav-placeholder"></div>
+
+
+    <div class="all-content">
+        <div id="titleimg" class="full-width-white" style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+            <div><img src="./img/場地遊玩.png" alt="" width="400px"></div>
+            <div class="title_right">羽球小知識</div>
+            <div class="title_left">球品篇</div>
+        </div>
+
+</div>
+
+
+
+        <!--打造好球品  -->
+        <div style="width: fit-content;">
+            <div id="text" class="normal;">
+                <h1 >打造好球品，你做對了嗎？</h1>
+                <p>
+                    想當稱職的羽球人，不只要會打球，規則與禮儀也很重要！得分是偶數從右邊發球，奇數從左邊，21
+                    分制先拿下者勝。記得不要走進別人的場地，以免發生碰撞；失分時也請主動撿球，展現運動精神。尊重彼此、禮貌應對，讓每場球都更順暢又愉快！
+                </p>
+            </div>
+            <div id="content" class="normal center" style="margin-top: 50px;">
+                <div>
+                    <div class="center-text" style="padding-top: 20px;">
+                        <div id="wordup1">球場規則</div>
+                        <div id="worddown1">打球時記得別走進別人的場地，<br>這樣比較安全也不會影響他人。</div>
+                    </div>
+                    <div class="center-text down_left">
+                        <div id="wordup2">撿球禮貌</div>
+                        <div id="worddown2" class="nospace-text">失分時，記得主動撿球給對方</div>
+                    </div>
+                </div>
+
+                <div style="margin-left: -20px;"><img src="./img/圖片去背.png" width="300px"></div>
+
+                <div style="margin-left: -60px;">
+                    <div class="center-text">
+                        <div id="wordup3">協商換球</div>
+                        <div id="worddown3" class="nospace-text">換球前，雙方達成共識，才是基本禮儀。</div>
+                    </div>
+                    <div class="center-text down_right">
+                        <div id="wordup4">風度表現</div>
+                        <div id="worddown4">打到人別裝沒事，舉手致意最重要！<br>運氣球得分時，也需跟對手示意。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="normal" style=" margin:30px 0;">
+            <p>除了前面提到的行為之外，球場上其實還藏著不少默契和潛規則，有些是站長累積的心得，也有部分是『靠北羽球』上的真實案例，提供給大家參考與提醒。壓球網、或者從球網底下過去，都會提高球網的損壞機率，好環境需要大家共同的維護。
+            </p>
+            <br>
+            <br>
+            <div style="width: fit-content;margin: 0 auto;">
+                <div class="left noticegap">
+                    <div><img src="./icon/right.png" width="30px"></div>
+                    <div class="good center">比賽結束，揮手跟對方致謝，是個有禮貌的好行為。</div>
+                </div>
+                <div class="left noticegap">
+                    <div><img src="./icon/right.png" width="30px"></div>
+                    <div class="good center" style="text-align: left;">失誤時、發球漏接或者沒過，可以來一句「sorry」。<br>緩解一下場上氣氛。</div>
+                </div>
+                <div class="left noticegap" style="text-align: left;">
+                    <div><img src="./icon/right.png" width="30px"></div>
+                    <div class="good center">界內界外由近的人說的算。<br>對於那些「在界內還是界外」的爭議球，記得別爭得臉紅脖子粗！</div>
+                </div>
+                <div class="left noticegap">
+                    <div><img src="./icon/false.png" width="30px"></div>
+                    <div class="good center">從網下掃球給對方。（當球還距離網子很遠的地方）</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="footer">
+        <div>揮拍出擊 羽你一起</div>
+        <img src="./icon/game-1.png">
+    </div>
+
+
+
+<script>
+  fetch("./nav.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("nav-placeholder").innerHTML = data;
+    });
+</script>
+
+
+
+</body>
+
+</html>

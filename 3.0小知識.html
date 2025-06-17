@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>尋找球場</title>
+  <link rel="stylesheet" href="./nav.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+
+    @media screen and (max-width:768px) {
+            #wrapper {
+                transform: scale(0.5);
+                transform-origin: top center
+            }
+        }
+
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      background-color: #FBF6EF;
+      overflow-x: hidden;
+    }
+
+    main {
+      flex: 1;
+      width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    #area {
+      text-align: center;
+      padding: 40px 40px 60px;
+      margin-top: 40px;
+    }
+
+    .title {
+      color: #8F4E11;
+      font-size: clamp(28px, 3vw, 35px);
+      font-weight: 700;
+      letter-spacing: 14px;
+      margin-top: 100px;
+    }
+
+
+
+
+ 
+
+    @media screen and (max-width:768px) {
+      #picturearea {
+        grid-template-columns: 1fr;
+      }
+
+      #area {
+        width: 100vw;
+        padding: 20px;
+      }
+    }
+
+    /* 天秤區塊 */
+    .wrapper {
+      position: relative;
+      margin: 200px auto;
+      width: 300px;
+    }
+
+    .scale-container {
+      position: relative;
+      width: 300px;
+      height: 20px;
+      background-color: #555;
+      border-radius: 10px;
+      transform-origin: center center;
+      transition: transform 0.5s ease;
+      z-index: 3;
+      margin: 0 auto;
+    }
+
+    .pivot {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 100px;
+      background: #444;
+      z-index: 2;
+    }
+
+    .base {
+      position: absolute;
+      width: 80px;
+      height: 20px;
+      background-color: #444;
+      top: 90px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .pan {
+      position: absolute;
+      width: 80px;
+      height: 40px;
+      background-color: #999;
+      border-radius: 0 0 50% 50%;
+    }
+
+    .left-pan {
+      left: -90px;
+      top: -25px;
+      transform-origin: right bottom;
+    }
+
+    .right-pan {
+      right: -90px;
+      top: -25px;
+      transform-origin: left bottom;
+    }
+
+    .weight {
+      width: 100px;
+      height: 100px;
+      background-color: black;
+      color: #fff;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: absolute;
+      top: -125px;
+      font-size: clamp(20px, 4vw, 40px);
+    }
+
+    .weight:hover {
+      width: 150px;
+      height: 150px;
+      top: -180px;
+      transition: width 0.3s, height 0.3s, top 0.3s;
+    }
+
+    .left-weight {
+      left: -100px;
+    }
+
+    .right-weight {
+      right: -100px;
+    }
+
+    /* Footer */
+    #footer {
+      background-color: rgba(3, 36, 12, 0.80);
+      color: #E5D9D9;
+      text-align: center;
+      font-size: clamp(30px, 5vw, 50px);
+      font-weight: 700;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #footer img {
+      width: clamp(30px, 3vw, 50px);
+      height: clamp(30px, 3vw, 50px);
+      transform: rotate(20deg);
+      aspect-ratio: 1/1;
+      margin-left: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 導覽列佔位 -->
+  <div id="nav-placeholder"></div>
+
+  <main>
+    <!-- 主內容 -->
+    <div id="area" style="margin-top: -40px;">
+      <div class="title">小知識<br>了解球品與規則</div>
+    </div>
+
+    <!-- 天秤動畫 -->
+    <div class="wrapper" >
+      <div class="scale-container" id="scale">
+        <a href="./3.小知識-球品篇-checked.html">
+          <div class="weight left-weight" onmouseenter="tilt('left')" onmouseleave="reset()">球品</div>
+        </a>
+        <a href="./3.小知識-規則篇-checked.html">
+          <div class="weight right-weight" onmouseenter="tilt('right')" onmouseleave="reset()">規則</div>
+        </a>
+        <div class="pan left-pan"></div>
+        <div class="pan right-pan"></div>
+      </div>
+      <div class="pivot"></div>
+      <div class="base"></div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer">
+    <div>揮拍出擊 羽你一起</div>
+    <img src="./icon/game-1.png" />
+  </div>
+
+  <!-- JS 加載導覽列 -->
+  <script>
+    fetch('./nav.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("nav-placeholder").innerHTML = html;
+
+        const toggle = document.getElementById("menu-toggle");
+        const links = document.getElementById("nav-links");
+
+        if (toggle && links) {
+          toggle.addEventListener("click", () => {
+            links.classList.toggle("show");
+          });
+        }
+      });
+
+    const scale = document.getElementById('scale');
+    function tilt(direction) {
+      scale.style.transform = direction === 'left' ? 'rotate(-20deg)' : 'rotate(20deg)';
+    }
+    function reset() {
+      scale.style.transform = 'rotate(0deg)';
+    }
+  </script>
+</body>
+
+</html>

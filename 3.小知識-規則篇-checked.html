@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>規則篇</title>
+    <link rel="stylesheet" href="./nav.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+        @media screen and (max-width:768px) {
+            .all-content {
+                transform: none !important;
+                scale: 1 !important;
+                margin: 0;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            #ruleknow {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                /* 原本有寫600px，會破壞響應式 */
+            }
+
+            #square {
+                margin: 20px auto;
+                flex-wrap: wrap;
+            }
+
+            .columncenter {
+                margin-left: 0;
+                padding: 10px;
+            }
+
+            .text {
+                font-size: 14px;
+                line-height: 26px;
+            }
+
+            .in {
+                width: 70px;
+                height: 70px;
+                font-size: 18px;
+            }
+
+        }
+
+        @media screen and (max-width: 1023px) {
+            .all-content {
+                transform: none;
+                width: 100%;
+                padding: 0 10px;
+                box-sizing: border-box;
+            }
+        }
+
+
+        body {
+            justify-content: center;
+            background-color: #FBF6EF;
+            min-height: 100vh;
+            width: 100%;
+            font-family: 'Noto Sans TC', sans-serif;
+            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+
+        .imgcontent {
+            margin-right: 20px;
+        }
+
+        .padding {
+            margin-bottom: 20px;
+        }
+
+        .different:hover {
+            color: black;
+            font-size: 20px;
+        }
+
+        .graycolor {
+            color: #BFBCBC;
+        }
+
+        .rule {
+            background-color: #A79999;
+            color: white;
+            font-size: 30px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            box-sizing: border-box;
+            margin: 0 auto;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .text {
+            font-size: clamp(15px, 3vw, 18px);
+            font-weight: 400;
+            line-height: clamp(30px, 6vw, 40px);
+            letter-spacing: 2.4px;
+            max-width: 100%;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            white-space: normal
+        }
+
+        .title {
+            color: #8F4E11;
+            font-size: clamp(25px, 4vw, 30px);
+            font-weight: 700;
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+        }
+
+        /* inout 區 */
+        .in {
+            background-color: #000;
+            color: white;
+            font-size: 30px;
+            display: flex;
+            width: clamp(100px, 10vw, 150px);
+            height: clamp(100px, 10vw, 150px);
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: background 0.3s;
+        }
+
+        .in:hover {
+            background-image: var(--bg);
+            background-color: transparent;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .columncenter {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title_right {
+            font-size: 35px;
+            writing-mode: vertical-lr;
+            margin: 30px 0 0 30px;
+            letter-spacing: 10px;
+        }
+
+        .title_left {
+            font-size: 30px;
+            writing-mode: vertical-lr;
+            margin-right: 10px;
+            background: rgba(200, 70, 70, 0.25);
+            color: white;
+            padding: 5px;
+            height: 150px
+        }
+
+        /* writing-mode:讓文字變成豎著 */
+        .full-width-white {
+            width: 100vw;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            /* margin-right: -50vw 是為了避免因 flex 或 margin 過度縮排而讓右邊被多推一點，也可以加保險。
+            這種寫法也常見於突破容器限制、讓背景全寬的設計。 */
+            padding: 20px 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #footer {
+            background-color: rgba(3, 36, 12, 0.80);
+            color: #E5D9D9;
+            text-align: center;
+            font-size: clamp(30px,5vw,50px);
+            font-weight: 700;
+            margin-top: clamp(80px, 5vw, 100px);
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        #footer img {
+            width: clamp(30px,3vw,50px);
+            height: clamp(30px,3vw,50px);
+            transform: rotate(20deg);
+            aspect-ratio: 1/1;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="nav-placeholder"></div>
+
+<script>
+  fetch('./nav.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("nav-placeholder").innerHTML = html;
+
+      // 加載完成後再加上 menu toggle 功能
+      const toggle = document.getElementById("menu-toggle");
+      const links = document.getElementById("nav-links");
+
+      if (toggle && links) {
+        toggle.addEventListener("click", () => {
+          links.classList.toggle("show");
+        });
+      }
+    });
+</script>
+
+
+
+    <div class="all-content">
+        <div class="full-width-white" >
+            <div style="margin: auto 0;"><img src="./img/遊玩（去背）.png" alt="" width="400px"></div>
+            <div class="title_right">羽球小知識</div>
+            <div style="text-align: center; display: flex; align-items: flex-start; padding-top: 20px;"
+                class="title_left">規則篇</div>
+        </div>
+
+
+
+        <div id="ruleknow" style="display: flex;justify-content: center;align-items: center;">
+
+            <!-- 整體方格群組 -->
+            <div id="square" class="center"
+                style="margin:40px 40px;box-shadow:20px 20px 5px 0px rgba(3, 2, 1, 0.25);height: fit-content;border: 5px solid green;">
+
+                <!-- 左邊方格群組 -->
+                <div class="rule">
+                    <div>RULE</div>
+                    <img src="./img/麥寮球場.jpg" alt="">
+                    <img src="./img/court(羽毛).jpg" alt="">
+                    <div>21分</div>
+                </div>
+            </div>
+
+            <!-- 文字區 -->
+            <div class="columncenter">
+                <div class="title">羽球規則，你知道了嗎？</div>
+                <div style="text-indent: 40px;max-width: 500px;" class="text">
+                    羽球比賽採用落地得分制，不管是發球還是接發球，只要得分就能加分。單打和雙打的場地略有不同，雙打的場地比較寬，發球區也比較短。了解這些基本規則，不只打起來更順，也能讓你看比賽時更有感覺、看得懂每一球的精彩所在。
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- inout 區 -->
+        <div class="center" style="gap: 30px; margin:100px 0;">
+            <div class="in" style="--bg:url(./rule/in.png)">IN</div>
+            <div class="in" style="--bg:url('./rule/out.png')">OUT</div>
+            <div class="in" style="--bg:url('./rule/out-2.png')">OUT</div>
+            <div class="in" style="--bg:url('./rule/ball.png')">換球</div>
+        </div>
+
+
+        <!--規則區： 外層 flex -->
+        <div class="center" style="margin-top: 100px;">
+
+            <!-- 右邊圖片區塊 -->
+            <div><img src="./img/雙打.png" alt="" width="200px"></div>
+
+            <!-- 左邊文字區塊 -->
+            <div style="margin: 30px 0 0 40px;">
+                <div style="margin: 0 0 40px 100px;font-size: 25px;color: #8F4E11;font-weight: bold;">雙打篇</div>
+                <div style="display: flex;align-items:center;" class="padding">
+                    <div class="imgcontent"><img src="./icon/game.png" alt="" width="50px"></div>
+                    <div class="different graycolor">白線內全都是雙打的界線</div>
+                </div>
+                <div style="display: flex;align-items:center;color: #696363;" class="padding">
+                    <div class="imgcontent"><img src="./icon/tips.png" alt="" width="50px"></div>
+                    <div>雙打講求，兩人互相的配合。<br>
+                        不要隨意搶別人的球，如果不清楚的話，可以問一下隊友。</div>
+                </div>
+                <div style="display: flex;align-items:center;color: #696363;">
+                    <div class="imgcontent"><img src="./icon/tips.png" alt="" width="50px"></div>
+                    <div>每局先達 21 分且領先對手至少 2 分者獲勝。</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="footer">
+        <div>揮拍出擊 羽你一起</div>
+        <img src="./icon/game-1.png">
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>首頁</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+        @media screen and (min-width:481px) and (max-width:768px) {
+            svg {
+                width: 120px;
+            }
+
+            .line {
+                width: 100px;
+                height: 3px;
+            }
+        }
+
+        @media screen and (max-width:480px) {
+            svg {
+                width: 100px;
+            }
+
+            #circlepart {
+                display: flex;
+                width: 100%;
+                justify-items: center;
+                align-items: center;
+                gap: 10px;
+                box-sizing: border-box;
+
+            }
+
+            .line {
+                width: 70px;
+                height: 3px;
+            }
+
+            #whitepart {
+                display: flex;
+                width: 250px;
+                height: 200px;
+                padding: 50px 50px 24px 50px;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: center;
+                flex-shrink: 0;
+                background: rgba(255, 255, 255, 0.95);
+                position: absolute;
+                top: -100px;
+                left: 0;
+
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            font-family: 'Noto Sans TC', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #FBF6EF;
+            font-family: 'Noto Sans TC', sans-serif;
+            position: relative;
+        }
+
+        /* 背景圖 */
+        .hero {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            margin-bottom: 70px;
+            flex-shrink: 0;
+            /* 防止被壓縮 */
+
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 疊在圖上的文字區塊 */
+        .hero-text {
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* 它的作用是「微調位置」，讓元素真正置中對齊 */
+            color: #E5D9D9;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .hero-text .title {
+            font-size: clamp(36px, 6vw, 100px);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-text .downtitle {
+            font-size: clamp(30px, 6vw, 100px);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .downtitle img {
+            width: clamp(40px, 5vw, 80px);
+            aspect-ratio: 1/1;
+            transform: rotate(20deg);
+        }
+
+        .line {
+            width: clamp(70px, 4vw, 180px);
+            height: 3px;
+            background-color: black;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0 30px;
+        }
+
+        .aboutus {
+            text-align: center;
+            font-size: 40px;
+            font-weight: 400;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        .img-container {
+            position: relative;
+            width: 100%;
+            height: 430px;
+            overflow: hidden;
+        }
+
+        .img-container img {
+            width: 100vw;
+            max-width: 700px;
+            display: block;
+
+        }
+
+        .img-container .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            opacity: 0.5;
+            pointer-events: none;
+            /* 點擊穿透 */
+        }
+
+        #info {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+        #whitepart {
+            display: flex;
+            width: clamp(100px, 5vw, 362px);
+            height: clamp(100px, 5vw, 334px);
+            padding: 197px 109px 24px 108px;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.95);
+            position: absolute;
+            top: -100px;
+            left: clamp(-50px, -4vw, 0px);
+
+        }
+
+        .text {
+            margin-bottom: 150px;
+        }
+
+        .text-2 {
+            margin-bottom: 70px;
+        }
+
+        .circletext {
+            color: #8F4E11;
+            text-align: center;
+            font-size: clamp(30px, 4vw, 40px);
+            font-weight: 400;
+            position: absolute;
+            top: 35%;
+            left: 20%;
+        }
+
+        #circlepart {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 800px;
+            justify-items: center;
+            align-items: center;
+            gap: clamp(10px, 10vw, 150px);
+        }
+
+     
+        a {
+            text-decoration: none;color: inherit;
+        }
+    </style>
+</head>
+
+<body>
+  
+    
+
+
+
+
+
+    <!-- 主畫面 -->
+    <div class="hero">
+        <img src="./img/首頁.jpg" alt="背景圖">
+        <div class="hero-text">
+            <div class="title">揮拍出擊</div>
+            <div class="downtitle">
+                <span>羽你一起</span>
+                <img src="./icon/game-1.png" alt="羽球圖示" />
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 關於我們 -->
+    <a href="./1.一封信-checked.html" > 
+        <div style="margin-bottom: 70px;">
+            <div class="text">
+                <div class="aboutus">ABOUT US</div>
+                <div class="row">
+                    <div class="line"></div>
+                    <span>關於我們</span>
+                    <div class="line"></div>
+                </div>
+            </div>
+            <div style="position: relative;">
+                <div class="img-container">
+                    <img src="./img/首頁小圖.jpg" />
+                    <div class="overlay"></div>
+                </div>
+                <div id="whitepart">
+                    <div style=" width: 150px;display: flex;flex-direction: column;align-items: center;">
+                        <img src="./icon/racket.png" width="68px">
+                        <div id="info">MORE INFO</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <!-- 豐富內容-->
+    <div class="text-2">
+        <div class="aboutus">CONTENT</div>
+        <div class="row">
+            <div class="line"></div>
+            <span>豐富內容</span>
+            <div class="line"></div>
+        </div>
+    </div>
+    <div id="circlepart" style="padding-bottom: 100px;">
+        <a href="./2.裝備介紹-checked.html">
+            <div style="position: relative;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="153" height="153" viewBox="0 0 153 153" fill="none">
+                    <path
+                        d="M76.5 0C118.75 0 153 34.2502 153 76.5C153 118.75 118.75 153 76.5 153C34.2502 153 0 118.75 0 76.5C0 72.8327 0.258884 69.2259 0.757812 65.6963H5.81152C5.27749 69.2197 5 72.8275 5 76.5C5 115.988 37.0116 148 76.5 148C115.988 148 148 115.988 148 76.5C148 37.0116 115.988 5 76.5 5C69.8706 5 63.4522 5.90342 57.3604 7.5918H43.2363C53.2943 2.72765 64.5785 0 76.5 0Z"
+                        fill="#D9D9D9" />
+                </svg>
+                <div class="circletext">裝備</div>
+            </div>
+        </a>
+        <a href="./3.0小知識.html">
+            <div style="position: relative;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="153" height="153" viewBox="0 0 153 153" fill="none">
+                    <path
+                        d="M76.5 0C118.75 0 153 34.2502 153 76.5C153 118.75 118.75 153 76.5 153C34.2502 153 0 118.75 0 76.5C0 72.8327 0.258884 69.2259 0.757812 65.6963H5.81152C5.27749 69.2197 5 72.8275 5 76.5C5 115.988 37.0116 148 76.5 148C115.988 148 148 115.988 148 76.5C148 37.0116 115.988 5 76.5 5C69.8706 5 63.4522 5.90342 57.3604 7.5918H43.2363C53.2943 2.72765 64.5785 0 76.5 0Z"
+                        fill="#D9D9D9" />
+                </svg>
+                <div class="circletext">知識</div>
+            </div>
+        </a>
+        <a href="./4.尋找球場.html">
+            <div style="position: relative;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="153" height="153" viewBox="0 0 153 153" fill="none">
+                    <path
+                        d="M76.5 0C118.75 0 153 34.2502 153 76.5C153 118.75 118.75 153 76.5 153C34.2502 153 0 118.75 0 76.5C0 72.8327 0.258884 69.2259 0.757812 65.6963H5.81152C5.27749 69.2197 5 72.8275 5 76.5C5 115.988 37.0116 148 76.5 148C115.988 148 148 115.988 148 76.5C148 37.0116 115.988 5 76.5 5C69.8706 5 63.4522 5.90342 57.3604 7.5918H43.2363C53.2943 2.72765 64.5785 0 76.5 0Z"
+                        fill="#D9D9D9" />
+                </svg>
+                <div class="circletext">球場</div>
+            </div>
+        </a>
+    </div>
+
+
+
+</body>
+
+</html>
